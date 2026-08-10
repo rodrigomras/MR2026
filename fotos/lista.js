@@ -1,0 +1,13 @@
+/* Gerado automaticamente por gerar-lista.py. Não editar à mão. */
+window.FOTOS = [
+  "IMG_0625 copy.jpg",
+  "IMG_0734.jpg",
+  "IMG_4064 copy.jpg",
+  "IMG_5249 copy.jpg",
+  "IMG_5347 copy.jpg",
+  "IMG_5724 copy.jpg",
+  "IMG_9373.JPG",
+  "f7fb24be-0c56-4840-a2ae-e4a1cf63cbf3.JPG",
+  "foto-1.jpg",
+  "foto-4.jpg"
+];

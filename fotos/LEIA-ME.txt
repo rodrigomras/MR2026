@@ -1,0 +1,68 @@
+FOTOGRAFIAS DO SITE
+===================
+
+Duas coisas vivem nesta pasta:
+
+  foto-0.jpg  (ou .JPG/.png/.webp)  → fundo da primeira secção (topo)
+  quaisquer outras fotos            → galeria rotativa da secção "Nós"
+
+A galeria "Nós" NÃO exige nomes específicos — podes arrastar para aqui
+fotos com o nome que a máquina ou o telemóvel lhes deu (ex: IMG_1234.jpg)
+e o site mostra-as automaticamente, 3 de cada vez, em rotação.
+
+Passo a passo depois de adicionares ou tirares fotos
+-----------------------------------------------------
+1. Coloca/remove as fotos nesta pasta.
+2. Corre este comando (ou pede a quem te ajudou a montar o site):
+     python3 gerar-lista.py
+3. Isto atualiza os ficheiros lista.js e lista.json, que são o que o
+   site lê para saber quais fotos mostrar. Sem este passo, fotos novas
+   não aparecem.
+
+   (São dois ficheiros com a mesma lista: o lista.js funciona mesmo
+   quando abres o index.html com duplo clique, sem servidor; o
+   lista.json é usado quando o site está publicado. Não precisas de
+   te preocupar com a diferença — o script gera os dois.)
+
+Sobre a foto-0.jpg (fundo do topo)
+-----------------------------------
+- É a foto atrás do nome "Mariana & Rodrigo". O texto fica em creme
+  sobre um véu escuro semi-transparente, por isso resulta melhor com
+  fotos horizontais e com algum contraste (não demasiado clara ao centro).
+- Tamanho: pelo menos 1600 px de largura, para ficar nítida em ecrãs grandes.
+- É sempre excluída da galeria "Nós" automaticamente — não precisas de
+  te preocupar com isso.
+- Enquanto não existir, o topo do site mostra o fundo creme simples,
+  sem foto — nunca fica partido.
+
+Fotos HEIC (formato do iPhone) não funcionam
+----------------------------------------------
+Os navegadores não conseguem mostrar ficheiros .heic/.HEIC. Se
+exportares fotos diretamente do iPhone, converte-as primeiro para
+.jpg — no iPhone: Definições > Câmara > Formatos > "Mais Compatível",
+ou na app Fotos: Partilhar > Guardar Imagem (grava como JPEG). Depois
+corre o gerar-lista.py outra vez; o script ignora ficheiros HEIC e
+avisa-te quais ficaram de fora.
+
+Formato recomendado (não obrigatório)
+---------------------------------------
+- Tamanho: cerca de 1200-1600 px de largura já chega.
+- Peso: até ~400-500 KB por foto, para o site abrir depressa no
+  telemóvel (podes reduzir em https://squoosh.app).
+- Formatos aceites: .jpg, .jpeg, .png, .webp (maiúsculas ou minúsculas).
+
+Como funciona a rotação
+--------------------------
+- A galeria mostra sempre 3 fotos ao mesmo tempo.
+- A cada ~4 segundos, avançam automaticamente para as 3 seguintes da
+  lista, com um esbatimento suave (crossfade).
+- Se houver 3 fotos ou menos, mostram-se todas sem rodar.
+- Se a pasta ainda não tiver fotos (além da foto-0), aparece uma nota
+  simples em vez de caixas vazias.
+
+Outros sítios onde podes usar fotografias
+-----------------------------------------
+1. Fundo do topo do site — já implementado (foto-0.jpg).
+2. Uma foto larga a separar as secções da festa e do RSVP.
+3. Depois do casamento: substituir a galeria "Nós" pelas fotos do dia.
+Diz-me qual queres e eu preparo.

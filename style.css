@@ -1,0 +1,455 @@
+/* ============================================================
+   Mariana & Rodrigo · 03.10.2026
+   Tipografia: Roboto
+   Paleta: terracota sobre papel creme — tons da mesma família,
+   sem cores de contraste, para um conjunto homogéneo.
+   ============================================================ */
+
+:root{
+  /* Terracota — do mais escuro (títulos, hover) ao mais suave
+     (detalhes, legendas). Todos derivados da mesma matiz. */
+  --terracota-esc:#8C3F21;
+  --terracota:#B4552F;
+  --terracota-medio:#C27A55;
+  --terracota-claro:#D2A183;
+
+  /* Papel — dois tons de creme para alternar secções sem
+     criar contraste forte. */
+  --creme:#F7F1E6;
+  --creme-esc:#F0E7D8;
+
+  /* Texto — castanhos quentes, da mesma família do terracota. */
+  --tinta:#4A3A30;
+  --tinta-suave:#6F5C4F;
+
+  /* Linhas — sempre terracota translúcido, em duas intensidades. */
+  --linha:rgba(180,85,47,.22);
+  --linha-forte:rgba(180,85,47,.38);
+
+  --f-texto:'Roboto', -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  --max:980px;
+  --gap:clamp(1rem, 3vw, 2rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  font-family:var(--f-texto);
+  font-weight:300;
+  font-size:clamp(.95rem,.55vw + .82rem,1.05rem);
+  line-height:1.75;
+  color:var(--tinta);
+  background-color:var(--creme);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  overflow-x:hidden;
+}
+
+img{max-width:100%}
+
+.wrap{
+  width:100%; max-width:var(--max); margin-inline:auto;
+  padding-inline:clamp(1.15rem,5vw,2.5rem);
+}
+
+/* ── Imagens das secções ──────────────────────────────────────
+   Substituem os antigos ícones desenhados. Ficam escondidas até
+   o ficheiro correspondente existir na pasta imagens/ (o
+   script.js trata disso).                                      */
+.sec-img{
+  display:block; margin:0 auto 1.2rem;
+  width:clamp(80px,16vw,120px); height:auto;
+}
+.sec-img-sm{width:clamp(56px,11vw,84px); margin-bottom:1rem}
+
+/* Ilustração vertical (casal a dançar) — a seguir a "Vamos casar".
+   Medida pela altura, para não ficar demasiado estreita. */
+.sec-img-alta{
+  width:auto; height:clamp(140px,24vw,200px);
+  margin:.4rem auto 1.6rem;
+}
+.card-img{
+  display:block; margin:0 0 1rem;
+  width:clamp(56px,12vw,80px); height:auto;
+}
+/* Ilustração de cena (não é um ícone): ocupa a largura do cartão */
+.card-img-larga{
+  width:100%; max-width:340px;
+  margin:0 auto 1.2rem;
+}
+
+/* ── Tipografia comum ────────────────────────────────────── */
+.eyebrow{
+  font-size:clamp(1.23rem,2.55vw,1.47rem); letter-spacing:.22em; text-transform:uppercase;
+  font-weight:400; line-height:1.5;
+  /* tom ligeiramente mais escuro que --terracota: a esta dimensão
+     é o que garante contraste suficiente sobre o creme */
+  color:#AE5029;
+  margin:0 0 1rem;
+}
+.titulo{
+  font-size:clamp(1.6rem,4.2vw,2.3rem);
+  font-weight:300; line-height:1.2;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--terracota); margin:0 0 .9rem;
+}
+.huge{
+  font-weight:300;
+  font-size:clamp(3.2rem,13vw,6rem); line-height:.95;
+  letter-spacing:.14em; color:var(--terracota); margin:0 0 .4rem;
+}
+
+/* RSVP: aqui a hierarquia é invertida de propósito — "Confirmação
+   de presença" é o título principal e "RSVP" fica como legenda
+   mais pequena por baixo. */
+#rsvp .eyebrow{
+  font-size:clamp(1.95rem,5.4vw,2.85rem);
+  letter-spacing:.12em; line-height:1.3;
+  margin:0 0 .3rem;
+}
+#rsvp .huge{
+  font-size:clamp(.9rem,2vw,1.1rem);
+  letter-spacing:.34em; line-height:1.4;
+  color:var(--terracota-esc);
+  margin:0 0 .2rem;
+}
+.lead{max-width:56ch; margin:0 auto 2rem; color:var(--tinta-suave)}
+.note{
+  font-size:.85rem; color:var(--tinta-suave);
+  max-width:52ch; margin:1.6rem auto 0;
+}
+
+/* ── Navegação ───────────────────────────────────────────── */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(247,241,230,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--linha);
+}
+.nav-inner{
+  max-width:var(--max); margin-inline:auto;
+  padding:.5rem clamp(1.15rem,5vw,2.5rem);
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.nav-brand{
+  font-size:1.65rem; font-weight:400; letter-spacing:.22em;
+  color:var(--terracota); text-decoration:none;
+}
+.nav-brand span{color:var(--terracota-claro)}
+.nav-links{list-style:none; display:flex; gap:clamp(.6rem,1.8vw,1.4rem); margin:0; padding:0}
+.nav-links a{
+  font-size:1.05rem; letter-spacing:.06em; text-transform:uppercase;
+  font-weight:400; color:var(--tinta-suave); text-decoration:none;
+  padding:.4rem 0; border-bottom:1px solid transparent;
+  transition:color .2s, border-color .2s; white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--terracota); border-color:var(--terracota)}
+
+.nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:.5rem}
+.nav-toggle span{display:block; width:24px; height:1.5px; background:var(--terracota); transition:transform .25s, opacity .2s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Botões ──────────────────────────────────────────────── */
+.btn{
+  display:inline-block;
+  background:var(--terracota); color:var(--creme);
+  font-family:var(--f-texto); font-size:.92rem; font-weight:400;
+  letter-spacing:.2em; text-transform:uppercase;
+  padding:.85rem 1.9rem; border-radius:999px;
+  text-decoration:none; border:1px solid var(--terracota);
+  cursor:pointer;
+  /* o texto dos botões nunca quebra de linha */
+  white-space:nowrap;
+  transition:background .2s, color .2s, transform .15s;
+}
+.btn:hover,.btn:focus-visible{background:var(--terracota-esc); border-color:var(--terracota-esc); transform:translateY(-1px)}
+.btn-ghost{background:transparent; color:var(--terracota)}
+.btn-ghost:hover,.btn-ghost:focus-visible{background:var(--terracota); color:var(--creme)}
+.btn-small{padding:.55rem 1.2rem; font-size:.82rem}
+.btn-lg{padding:.95rem 2.2rem; font-size:1rem}
+.btn.is-copied{background:var(--terracota-esc); border-color:var(--terracota-esc)}
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero{
+  position:relative;
+  text-align:center;
+  padding:clamp(3.5rem,13vw,6.5rem) 0;
+}
+.names{
+  font-weight:300;
+  font-size:clamp(2rem,7vw,3.4rem); line-height:1.2;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--terracota); margin:0;
+}
+.names em{font-style:normal; color:var(--terracota-claro)}
+
+/* Altura: 75% da altura da janela. A imagem de fundo é definida
+   pelo script.js (procura foto-0 em qualquer extensão), por isso
+   aqui só se define o enquadramento.
+   background-position "center 25%" mantém os dois rostos no
+   enquadramento: ao cortar, tira mais de baixo (onde fica o véu
+   escuro e os nomes) do que de cima (onde ficam as cabeças).     */
+.hero.has-photo{
+  padding:0;
+  height:75vh; min-height:420px;
+  display:flex; align-items:flex-end; justify-content:center;
+  background-position:center 25%;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.hero.has-photo::before{
+  content:''; position:absolute; inset:0;
+  /* véu quente, no mesmo castanho-terracota do resto do site */
+  background:linear-gradient(180deg, rgba(74,45,30,0) 45%, rgba(74,45,30,.52) 82%, rgba(74,45,30,.72) 100%);
+}
+.hero.has-photo .wrap{
+  position:relative; z-index:1;
+  padding-bottom:clamp(2.4rem,7vw,4rem);
+}
+.hero.has-photo .names{color:var(--creme)}
+.hero.has-photo .names em{color:var(--terracota-claro)}
+
+/* ── Introdução ──────────────────────────────────────────── */
+.intro{
+  text-align:center;
+  padding:clamp(2rem,6vw,3rem) 0 clamp(2.6rem,7vw,4rem);
+  border-bottom:1px solid var(--linha);
+}
+.date{
+  font-size:clamp(1.5rem,3.6vw,1.8rem); font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase; margin:0 0 .35rem;
+}
+.place{
+  font-size:1.2rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--tinta-suave); margin:0 0 2.2rem;
+}
+.hero-cta{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center}
+
+/* ── Secções ─────────────────────────────────────────────── */
+.section{text-align:center; padding:clamp(3rem,9vw,5.5rem) 0; border-bottom:1px solid var(--linha)}
+.section-alt{background:var(--creme-esc)}
+
+/* Caixas com cantos irregulares */
+.box{
+  border:1.6px solid var(--linha);
+  border-radius:52px 26px 46px 30px / 28px 44px 26px 50px;
+  background:rgba(255,255,255,.34);
+}
+
+/* ── Contagem decrescente ────────────────────────────────── */
+.countdown{display:flex; align-items:flex-start; justify-content:center; gap:clamp(.2rem,1.5vw,.9rem); flex-wrap:nowrap}
+.cd-cell{min-width:clamp(52px,15vw,84px); display:flex; flex-direction:column; align-items:center}
+.cd-num{
+  font-weight:300;
+  font-size:clamp(2rem,9vw,3.4rem); line-height:1;
+  color:var(--terracota); font-variant-numeric:tabular-nums;
+}
+.cd-lbl{font-size:.9rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-suave); margin-top:.5rem}
+.cd-sep{font-size:clamp(1.5rem,6vw,2.6rem); font-weight:300; color:var(--terracota-claro); line-height:1.1}
+.cd-msg{font-size:1.95rem; letter-spacing:.1em; color:var(--terracota); margin:1rem 0 0}
+
+.save-date{margin:3.2rem auto 0; max-width:470px; padding:1.7rem 1.2rem}
+.save-date-title{
+  font-size:1.43rem; font-weight:400;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--terracota); margin:0 0 1.1rem;
+}
+.mini-cal{
+  list-style:none; display:flex; justify-content:center; align-items:center;
+  gap:clamp(.3rem,1.6vw,.7rem); margin:0 0 1.2rem; padding:0;
+  font-size:clamp(1.5rem,4.5vw,1.8rem); font-weight:300;
+  color:var(--tinta-suave);
+}
+.mini-cal li{min-width:1.2em}
+.mini-cal .is-day{color:var(--terracota); font-weight:500; font-size:1.9em}
+.save-date-sub{font-size:1.05rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:0}
+
+/* ── Galeria: todas as fotos da pasta fotos/ ─────────────── */
+.galeria{
+  display:grid; gap:clamp(1rem,3vw,1.6rem);
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  margin-top:2.2rem;
+}
+.foto{margin:0}
+.foto img{
+  display:block; width:100%; aspect-ratio:3/4; object-fit:cover;
+  border:1px solid var(--linha);
+  border-radius:3px;
+  background:var(--creme-esc);
+  padding:8px; background-clip:content-box;
+}
+.galeria:empty{display:none}
+
+/* ── Cartões ─────────────────────────────────────────────── */
+.cards{
+  display:grid; gap:var(--gap);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  text-align:left; margin-top:2rem;
+}
+
+/* Missa & Festa: os 3 cartões ficam empilhados numa só coluna e
+   só passam a 3 colunas quando houver espaço para os três lado a
+   lado — nunca ficam 2 em cima e 1 sozinho em baixo.
+   (O breakpoint está mais abaixo, na zona do responsivo.)        */
+#missa-festa .cards{grid-template-columns:1fr}
+.card{
+  background:rgba(255,255,255,.4);
+  border:1px solid var(--linha);
+  border-radius:34px 18px 30px 20px / 20px 28px 18px 32px;
+  padding:1.6rem 1.5rem;
+}
+.card h3{
+  font-size:1.05rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--terracota-esc); margin:.2rem 0 .5rem;
+}
+.card p{margin:0 0 .6rem}
+.card p:last-child{margin-bottom:0}
+.card .btn-small{margin-top:.6rem}
+.card-time{font-size:1.08rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracota); margin-bottom:.7rem !important}
+.tag{font-size:.93rem; letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
+
+/* ── Prendas (Lista de Casamento) ────────────────────────── */
+.prendas{
+  display:grid; gap:var(--gap);
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  margin-top:2rem;
+}
+.prenda{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  border:1px dashed var(--linha-forte);
+  border-radius:34px 18px 30px 20px / 20px 28px 18px 32px;
+  padding:1.6rem 1.4rem;
+}
+/* Sempre 60% da largura do bloco, seja qual for o tamanho do ecrã
+   (a percentagem é calculada sobre o espaço interior do cartão,
+   já descontadas as margens laterais). */
+.prenda-img{
+  width:60%; height:auto; aspect-ratio:1/1; object-fit:contain;
+  margin-bottom:1rem;
+}
+.prenda h3{
+  font-size:1rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--terracota-esc); margin:0 0 .4rem;
+}
+.prenda-valor{
+  font-size:1.65rem; font-weight:400;
+  color:var(--terracota); margin:0 0 .6rem;
+}
+.prenda-desc{font-size:.9rem; color:var(--tinta-suave); margin:0}
+
+/* ── IBAN ────────────────────────────────────────────────── */
+.iban-box{margin:2.8rem auto 0; max-width:520px; padding:1.9rem 1.5rem; border-color:var(--linha-forte)}
+.iban-label{font-size:1.02rem; letter-spacing:.24em; text-transform:uppercase; color:var(--tinta-suave); margin:0 0 .5rem}
+.iban-holder{font-size:1.65rem; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--terracota-esc); margin:0 0 .5rem}
+.iban-value{
+  /* nunca quebra de linha: o tamanho acompanha a largura do ecrã
+     para o IBAN caber sempre inteiro numa linha só */
+  font-size:clamp(.9rem,4vw,1.55rem); font-weight:400;
+  letter-spacing:.02em; white-space:nowrap; margin:0 0 1.1rem; color:var(--tinta);
+}
+
+/* ── Listas (Onde Ficar) ─────────────────────────────────── */
+.stack{margin-top:2rem; text-align:left}
+.row{display:flex; gap:1rem; align-items:flex-start; justify-content:space-between; padding:1.4rem 0; border-top:1px dashed var(--linha)}
+.row:last-child{border-bottom:1px dashed var(--linha)}
+.row h3{font-size:1.05rem; font-weight:500; letter-spacing:.06em; color:var(--terracota-esc); margin:0 0 .25rem}
+.row p{margin:0}
+.row-meta{font-size:1.05rem; letter-spacing:.16em; text-transform:uppercase; color:#AE5029; margin-bottom:.5rem !important}
+.row-link{
+  flex:0 0 auto; font-size:1.08rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--terracota); text-decoration:none; white-space:nowrap;
+  border-bottom:1px solid var(--linha); padding-bottom:2px;
+}
+.row-link:hover,.row-link:focus-visible{border-color:var(--terracota)}
+
+/* ── Rodapé ──────────────────────────────────────────────── */
+.footer{text-align:center; padding:clamp(3rem,8vw,4.5rem) 0; background:var(--creme-esc)}
+.footer-thanks{color:var(--tinta-suave); margin:0 0 1rem}
+.footer-names{
+  font-size:clamp(1.3rem,4.5vw,1.9rem); font-weight:300;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--terracota); margin:0;
+}
+.footer-names span{color:var(--terracota-medio)}
+.footer-date{font-size:1.08rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:.8rem 0 0}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline-offset:3px}
+
+/* ── Animação de entrada ─────────────────────────────────── */
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+.reveal.is-visible{opacity:1; transform:none}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+/* Menu: com a letra maior, os 7 links só cabem lado a lado a
+   partir de 1200px — abaixo disso usa-se o menu recolhido. */
+@media (max-width:1199px){
+  .nav-toggle{display:flex}
+  .nav-inner{position:relative}
+  .nav-links{
+    position:absolute; left:0; right:0; top:100%;
+    flex-direction:column; gap:0;
+    background:var(--creme);
+    border-bottom:1px solid var(--linha);
+    max-height:0; overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .nav-links.is-open{max-height:70vh; overflow-y:auto}
+  .nav-links li{border-top:1px dashed var(--linha)}
+  /* mesmo tamanho dos títulos dos cartões (.card h3) */
+  .nav-links a{display:block; padding:.95rem clamp(1.15rem,5vw,2.5rem); font-size:1.05rem; letter-spacing:.1em; border-bottom:0}
+}
+
+@media (max-width:700px){
+  .galeria{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Missa & Festa — empilhados: cartão centrado e com largura
+   limitada, para o texto não se esticar por todo o ecrã. */
+@media (max-width:899px){
+  #missa-festa .card{width:100%; max-width:560px; margin-inline:auto}
+}
+
+/* Missa & Festa — só a partir daqui cabem os 3 lado a lado. */
+@media (min-width:900px){
+  #missa-festa .cards{grid-template-columns:repeat(3,1fr)}
+}
+
+@media (max-width:600px){
+  .cards{grid-template-columns:1fr}
+  .prendas{grid-template-columns:1fr}
+  .row{flex-direction:column; gap:.5rem}
+  .row-link{align-self:flex-start}
+  .countdown{gap:.1rem}
+  .cd-sep{display:none}
+  .cd-cell{min-width:0; flex:1; border-right:1px dashed var(--linha); padding-inline:.2rem}
+  .cd-cell:last-child{border-right:0}
+
+  /* Botões: com a letra maior, no telemóvel é preciso apertar o
+     espaçamento e o preenchimento para o texto caber numa linha. */
+  .btn-lg{padding:.9rem 1.4rem; font-size:.92rem; letter-spacing:.1em}
+  .iban-box{padding:1.7rem 1rem}
+  .hero-cta .btn{width:100%; max-width:340px}
+}
+
+/* Telemóveis muito estreitos (320px): o botão do formulário ainda
+   precisa de menos espaçamento para caber numa linha. */
+@media (max-width:359px){
+  .btn-lg{padding:.85rem 1.1rem; font-size:.85rem; letter-spacing:.06em}
+}
+
+@media (min-width:1200px){:root{--max:1080px}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important; transition:none !important}
+  .reveal{opacity:1; transform:none}
+}
