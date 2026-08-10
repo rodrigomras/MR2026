@@ -294,7 +294,76 @@
     timerAjuste = setTimeout(ajustarGrelha, 150);
   }
 
-  /* ── 7. Animação suave de entrada das secções ────────────── */
+  /* ── 8. Prendas: grelha sempre completa e centrada ────────
+     Ao contrário da galeria de fotos (secção 6b), aqui não se
+     pode esconder nenhuma prenda — têm de aparecer todas. Em vez
+     disso, ajusta-se o NÚMERO DE COLUNAS (a variável CSS
+     --prendas-colunas, usada no flex-basis de cada .prenda) para
+     que a grelha feche sempre uma linha completa e nunca deixe a
+     última linha com uma única prenda sozinha:
+       1) mede quantas colunas cabem naturalmente na largura do
+          contentor, sem nunca passar de MAX_COLUNAS_PRENDAS —
+          para os cartões não ficarem pequenos demais em ecrãs
+          largos;
+       2) procura, a partir daí para baixo, o maior número de
+          colunas que divide o total de prendas sem resto;
+       3) se não houver divisor exato, procura o maior número
+          de colunas cujo resto não seja exactamente 1 (a última
+          linha pode ficar incompleta, mas nunca com uma prenda
+          isolada) — e como .prendas é flex-wrap com
+          justify-content:center, essa linha incompleta fica
+          automaticamente centrada, em vez de encostada à
+          esquerda.
+     (Nota: função e variável com nomes próprios — "colunas" e
+     "grelha" já existem na secção 6b para a galeria de fotos, e
+     reutilizar os mesmos nomes aqui rebentava com essa secção.) */
+  var MAX_COLUNAS_PRENDAS = 3;
+  var LARGURA_MIN_PRENDA = 220; // tem de bater certo com o min-width no CSS
+  var prendasGrelha = document.querySelector('.prendas');
+
+  function colunasNaturaisPrendas(grelha) {
+    var largura = grelha.getBoundingClientRect().width;
+    var gap = parseFloat(window.getComputedStyle(grelha).columnGap) || 0;
+    var colunas = Math.floor((largura + gap) / (LARGURA_MIN_PRENDA + gap));
+    return Math.max(1, colunas);
+  }
+
+  function melhorNumeroColunasPrendas(total, maxColunas) {
+    if (total <= maxColunas) return total || 1;
+
+    for (var c = maxColunas; c >= 2; c--) {
+      if (total % c === 0) return c;
+    }
+    for (var c2 = maxColunas; c2 >= 2; c2--) {
+      if (total % c2 !== 1) return c2;
+    }
+    return maxColunas;
+  }
+
+  function ajustarGrelhaPrendas() {
+    if (!prendasGrelha) return;
+
+    var itens = prendasGrelha.querySelectorAll('.prenda').length;
+    if (!itens) return;
+
+    var maxColunas = Math.min(colunasNaturaisPrendas(prendasGrelha), MAX_COLUNAS_PRENDAS);
+    var colunas = melhorNumeroColunasPrendas(itens, maxColunas);
+    prendasGrelha.style.setProperty('--prendas-colunas', colunas);
+  }
+
+  var timerAjustePrendas;
+
+  function agendarAjustePrendas() {
+    clearTimeout(timerAjustePrendas);
+    timerAjustePrendas = setTimeout(ajustarGrelhaPrendas, 150);
+  }
+
+  if (prendasGrelha) {
+    ajustarGrelhaPrendas();
+    window.addEventListener('resize', agendarAjustePrendas);
+  }
+
+  /* ── 9. Animação suave de entrada das secções ────────────── */
   var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!reduzir && 'IntersectionObserver' in window) {

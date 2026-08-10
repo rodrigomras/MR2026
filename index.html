@@ -120,33 +120,33 @@
   <div class="wrap">
     <img class="sec-img" src="imagens/missa-festa.png" alt="" data-opcional>
     <h2 class="titulo">Missa &amp; Festa</h2>
-    <p class="lead">Um dia inteiro para celebrar convosco, em Vila Real.</p>
+    <p class="lead">Um dia inteiro para celebrar, em Vila Real.</p>
 
     <div class="cards">
+      <article class="card">
+        <img class="card-img card-img-larga" src="imagens/como-chegar.png" alt="Ilustração de um carro a caminho do casamento">
+        <h3>Como Chegar</h3>
+        <p class="card-time">Vila Real</p>
+        <p>Há estacionamento no local e a entrada será feita pela entrada principal da casa, a poucos metros do estacionamento.</p>
+        <a class="btn btn-small" href="https://maps.app.goo.gl/bcjkuscM3ZhCDjp59" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      </article>
+
       <article class="card">
         <img class="card-img card-img-larga" src="imagens/missa.png" alt="Ilustração da cerimónia religiosa">
         <h3>Missa</h3>
         <p class="card-time">15h00</p>
-        <p>Pedimos que cheguem 20 a 30 minutos antes, para que todos estejam sentados quando a noiva entrar.</p>
+        <p>Pedimos que cheguem à hora, para que todos estejam sentados quando a noiva entrar.</p>
       </article>
 
       <article class="card">
         <img class="card-img card-img-larga" src="imagens/festa.png" alt="Ilustração da festa de casamento">
         <h3>Festa</h3>
         <p class="card-time">a seguir à missa</p>
-        <p>Seguimos todos juntos para o mesmo local da cerimónia. Cocktail, jantar, brindes e dança até tarde.</p>
-      </article>
-
-      <article class="card">
-        <img class="card-img card-img-larga" src="imagens/como-chegar.png" alt="Ilustração de um carro a caminho do casamento">
-        <h3>Como Chegar</h3>
-        <p class="card-time">Vila Real</p>
-        <p>Há estacionamento no local. De Porto ou Braga, A4 até Vila Real (cerca de 1h). Quem vier de comboio ou autocarro, avisem-nos: organizamos transporte.</p>
-        <a class="btn btn-small" href="https://maps.app.goo.gl/bcjkuscM3ZhCDjp59" target="_blank" rel="noopener">Google Maps</a>
+        <p>Seguimos todos juntos para o mesmo local da cerimónia.</p>
       </article>
     </div>
 
-    <p class="note">Traje: fato escuro.</p>
+    <p class="note">Dresscode: fato escuro.</p>
   </div>
 </section>
 
@@ -178,7 +178,10 @@
          │   • src da imagem   → imagens/prendas/nome.png       │
          │   • <h3>           → nome da prenda                  │
          │   • <p class="prenda-valor"> → valor                 │
-         │ A grelha ajusta-se sozinha ao número de prendas.     │
+         │ Todas as prendas ficam dentro do MESMO <div          │
+         │ class="prendas">, para formarem uma única grelha —   │
+         │ o script.js (secção 8) escolhe o número de colunas   │
+         │ para nenhuma linha ficar com uma prenda sozinha.     │
          └──────────────────────────────────────────────────────┘ -->
     <div class="prendas">
       <article class="prenda">
@@ -187,76 +190,67 @@
         <p class="prenda-valor">380€</p>
         <p class="prenda-desc">Uma maquina de café para nos ajudar a começar o dia com energia.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/colchao.png" alt="Colchão" data-opcional>
         <h3>Colchão</h3>
         <p class="prenda-valor">465€</p>
         <p class="prenda-desc">Um colchão confortável para garantir um bom descanso.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/faqueiro.png" alt="Faqueiro Cutipol" data-opcional>
         <h3>Faqueiro Cutipol</h3>
         <p class="prenda-valor">600€</p>
         <p class="prenda-desc">Um faqueiro de qualidade para receber todos os convidados.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/servico-pratos.png" alt="Serviço de Pratos" data-opcional>
         <h3>Serviço de Pratos</h3>
         <p class="prenda-valor">330€</p>
         <p class="prenda-desc">Um serviço de pratos para servir as demias iguarias.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/copos.png" alt="Serviço de Copos" data-opcional>
         <h3>Serviço de Copos</h3>
         <p class="prenda-valor">80€</p>
         <p class="prenda-desc">Um serviço de copos para bebericar diversos refrescos.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/tapete.png" alt="Tapeçaria das Indias" data-opcional>
         <h3>Tapeçaria das Indias</h3>
         <p class="prenda-valor">180€</p>
         <p class="prenda-desc">Um elemento essencial para a nossa deslocação nest Mundo Ideal.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/mesas-cabeceira.png" alt="Mesas de Cabeceira" data-opcional>
         <h3>Mesas de Cabeceira</h3>
         <p class="prenda-valor">215€</p>
         <p class="prenda-desc">Duas mesas de cabeceira indispensaveis para apoiar os melhores momentos de descanso.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/bimby.png" alt="Bimby" data-opcional>
         <h3>Bimby</h3>
         <p class="prenda-valor">1500€</p>
         <p class="prenda-desc">Uma Bimby para nos ajudar na cozinha com a promessa de grandes refeições quando nos vierem visitar.</p>
       </article>
-    </div>
-    <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/candeeiros.png" alt="Candeeiros" data-opcional>
         <h3>Candeeiros</h3>
         <p class="prenda-valor">60€</p>
         <p class="prenda-desc">Candeeiros para iluminar a nossa casa.</p>
       </article>
-    </div>
-         <div class="prendas">
+
       <article class="prenda">
         <img class="prenda-img" src="imagens/prendas/lua-de-mel.png" alt="Lua de Mel" data-opcional>
         <h3>Lua de Mel</h3>
-        <p class="prenda-valor">Contribuição livre</p>
+        <p class="prenda-valor">Contribuição</p>
         <p class="prenda-desc">Uma ajuda na viagem pelo Japão e Maldivas: uma noite, um jantar, um passeio. Guardamos a memória e a fotografia.</p>
       </article>
     </div>
@@ -281,7 +275,7 @@
       <article class="row">
         <div class="row-main">
           <h3>Hotel Miracorgo</h3>
-          <p class="row-meta">Centro da cidade · Vista sobre o vale do Corgo</p>
+          <p class="row-meta">Centro da cidade · Vista sobre o rio</p>
           <p>O clássico de Vila Real, a poucos minutos a pé da Avenida Carvalho Araújo. Prático para quem não quer conduzir depois da festa.</p>
         </div>
         <a class="row-link" href="https://www.google.com/maps/search/Hotel+Miracorgo+Vila+Real" target="_blank" rel="noopener">Mapa →</a>
@@ -299,7 +293,7 @@
       <article class="row">
         <div class="row-main">
           <h3>Quinta do Paço Hotel</h3>
-          <p class="row-meta">~4 km do centro · Hotel rural</p>
+          <p class="row-meta">~4 km do centro · Hotel</p>
           <p>Uma quinta tranquila nos arredores, ideal para famílias ou grupos que venham de carro.</p>
         </div>
         <a class="row-link" href="https://www.google.com/maps/search/Quinta+do+Pa%C3%A7o+Hotel+Vila+Real" target="_blank" rel="noopener">Mapa →</a>
@@ -333,9 +327,20 @@
     <h2 class="titulo">O Que Visitar</h2>
     <p class="lead">Se puderem, fiquem o fim de semana. Vila Real é a porta de entrada do Douro e do Alvão.</p>
 
+    <!-- ┌──────────────────────────────────────────────────────┐
+         │ FOTOS DOS LOCAIS                                     │
+         │ Wikimedia Commons, licenças CC BY / CC BY-SA:        │
+         │  · palacio-mateus.jpg      — Varun Shiv Kapur (CC BY 2.0)     │
+         │  · miradouro-galafura.jpg  — Vitor Oliveira (CC BY-SA 2.0)    │
+         │  · fisgas-ermelo.jpg       — Husond (CC BY-SA 3.0)            │
+         │  · santuario-panoias.jpg   — Henrique Matos (CC BY 2.5)       │
+         │ avenida-carvalho-araujo.jpeg e jardim-botanico-da-utad.jpg   │
+         │ foram adicionadas manualmente — sem info de licença aqui.    │
+         └──────────────────────────────────────────────────────┘ -->
     <div class="cards cards-3">
       <article class="card">
         <p class="tag">Barroco</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/palacio-mateus.jpg" alt="Fachada barroca do Palácio de Mateus, com espelho de água">
         <h3>Palácio de Mateus</h3>
         <p>A jóia barroca da região, atribuída a Nasoni, a 3 km da cidade. Jardins, adega, capela e a célebre edição ilustrada de <em>Os Lusíadas</em>.</p>
         <p class="row-meta">Aberto das 9h às 19h · casa e jardins</p>
@@ -343,32 +348,42 @@
 
       <article class="card">
         <p class="tag">Cidade</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/avenida-carvalho-araujo.jpeg" alt="Avenida Carvalho Araújo, em Vila Real">
         <h3>Avenida Carvalho Araújo</h3>
         <p>A sala de visitas de Vila Real: a Sé, a Casa de Diogo Cão, os cafés e a esplanada certa para um fim de tarde sem pressa.</p>
+        <p class="row-meta">Centro da cidade · acesso livre</p>
       </article>
 
       <article class="card">
         <p class="tag">Douro</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/miradouro-galafura.jpg" alt="Vista do rio Douro e dos socalcos vinhateiros a partir do Miradouro de São Leonardo da Galafura">
         <h3>Miradouro de São Leonardo da Galafura</h3>
         <p>A 566 m de altitude, a paisagem do Douro imortalizada por Miguel Torga. Se só tiverem tempo para uma paragem, que seja esta.</p>
+        <p class="row-meta">~25 min de carro · acesso livre</p>
       </article>
 
       <article class="card">
         <p class="tag">Natureza</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/fisgas-ermelo.jpg" alt="Cascata das Fisgas de Ermelo no Parque Natural do Alvão">
         <h3>Parque Natural do Alvão</h3>
         <p>A cerca de 25 minutos de carro. As Fisgas de Ermelo — com quase 200 m de queda — são das cascatas mais altas do país.</p>
+        <p class="row-meta">~25 min de carro · Fisgas de Ermelo</p>
       </article>
 
       <article class="card">
         <p class="tag">História</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/santuario-panoias.jpg" alt="Rocha esculpida com nichos rituais no Santuário de Panóias">
         <h3>Santuário de Panóias</h3>
         <p>Um santuário romano esculpido na rocha, ainda com as inscrições dos rituais. Estranho, silencioso e inesquecível.</p>
+        <p class="row-meta">~10 min de carro · sítio arqueológico</p>
       </article>
 
       <article class="card">
         <p class="tag">Jardins</p>
+        <img class="card-img card-img-larga card-img-foto" src="imagens/visitar/jardim-botanico-da-utad.jpg" alt="Jardim Botânico da UTAD, em Vila Real">
         <h3>Jardim Botânico da UTAD</h3>
         <p>Um dos jardins botânicos mais bonitos de Portugal, perfeito para um passeio de manhã antes de seguir viagem.</p>
+        <p class="row-meta">Campus da UTAD · a poucos minutos do centro</p>
       </article>
     </div>
 
@@ -380,7 +395,7 @@
 <footer class="footer">
   <div class="wrap">
     <img class="sec-img sec-img-sm" src="imagens/rodape.png" alt="" data-opcional>
-    <p class="footer-thanks">Obrigado por fazerem parte do nosso dia.</p>
+    <p class="footer-thanks">Obrigado por fazerem parte deste dia.</p>
     <p class="footer-names">Mariana <span>&amp;</span> Rodrigo</p>
     <p class="footer-date">03 · 10 · 2026 — Vila Real</p>
   </div>

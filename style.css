@@ -80,6 +80,14 @@ img{max-width:100%}
   width:100%; max-width:340px;
   margin:0 auto 1.2rem;
 }
+/* Fotografias reais (secção "O Que Visitar"): ao contrário das
+   ilustrações, vêm com proporções diferentes umas das outras —
+   recorta-se para um formato comum, para os cartões ficarem
+   alinhados. */
+.card-img-foto{
+  aspect-ratio:4/3; object-fit:cover;
+  border-radius:10px;
+}
 
 /* ── Tipografia comum ────────────────────────────────────── */
 .eyebrow{
@@ -106,7 +114,7 @@ img{max-width:100%}
    de presença" é o título principal e "RSVP" fica como legenda
    mais pequena por baixo. */
 #rsvp .eyebrow{
-  font-size:clamp(1.95rem,5.4vw,2.85rem);
+  font-size:clamp(1.95rem,4.4vw,2.55rem);
   letter-spacing:.12em; line-height:1.3;
   margin:0 0 .3rem;
 }
@@ -315,13 +323,24 @@ img{max-width:100%}
 .tag{font-size:.93rem; letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
 
 /* ── Prendas (Lista de Casamento) ────────────────────────── */
+/* Flexbox em vez de grid: com flex-wrap + justify-content:center,
+   cada LINHA se centra a si própria — por isso, se a última linha
+   não tiver prendas suficientes para a preencher, esse grupo fica
+   centrado sozinho, em vez de encostado à esquerda.
+   --prendas-colunas é definida pelo script.js (secção 8), que
+   escolhe o número de colunas (máx. 3) consoante o total de
+   prendas, para nenhuma linha ficar com uma prenda isolada. O
+   valor por omissão (3) serve de base antes do JS correr. */
 .prendas{
-  display:grid; gap:var(--gap);
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  --prendas-colunas:3;
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:var(--gap);
   margin-top:2rem;
 }
 .prenda{
   display:flex; flex-direction:column; align-items:center; text-align:center;
+  flex:0 1 calc((100% - (var(--prendas-colunas) - 1) * var(--gap)) / var(--prendas-colunas));
+  min-width:220px;
   border:1px dashed var(--linha-forte);
   border-radius:34px 18px 30px 20px / 20px 28px 18px 32px;
   padding:1.6rem 1.4rem;
@@ -425,7 +444,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline
 
 @media (max-width:600px){
   .cards{grid-template-columns:1fr}
-  .prendas{grid-template-columns:1fr}
+  /* .prendas já não é grid — o script.js define --prendas-colunas:1
+     automaticamente quando a largura só dá para uma coluna. */
   .row{flex-direction:column; gap:.5rem}
   .row-link{align-self:flex-start}
   .countdown{gap:.1rem}
@@ -452,4 +472,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline
   html{scroll-behavior:auto}
   *{animation:none !important; transition:none !important}
   .reveal{opacity:1; transform:none}
+}
+
+/* "Onde Ficar" e "O Que Visitar" — os parágrafos de texto ficam
+   escondidos a pedido (títulos, imagens, .row-meta e links de mapa
+   mantêm-se visíveis). O texto continua no HTML, só não é apresentado. */
+#ficar p:not(.row-meta),
+#visitar p:not(.row-meta){
+  display:none;
 }
