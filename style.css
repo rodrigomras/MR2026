@@ -50,6 +50,11 @@ body{
 
 img{max-width:100%}
 
+/* Todos os parágrafos: +20% em relação ao tamanho herdado.
+   Classes com tamanho próprio (mais abaixo) já vêm recalculadas
+   e sobrepõem-se a esta regra de base. */
+p{font-size:1.2em}
+
 .wrap{
   width:100%; max-width:var(--max); margin-inline:auto;
   padding-inline:clamp(1.15rem,5vw,2.5rem);
@@ -64,6 +69,8 @@ img{max-width:100%}
   width:clamp(80px,16vw,120px); height:auto;
 }
 .sec-img-sm{width:clamp(56px,11vw,84px); margin-bottom:1rem}
+/* Imagem da Contagem Decrescente: +40% em relação ao .sec-img base */
+#contagem .sec-img{width:clamp(112px,22.4vw,168px)}
 
 /* Ilustração vertical (casal a dançar) — a seguir a "Vamos casar".
    Medida pela altura, para não ficar demasiado estreita. */
@@ -91,7 +98,7 @@ img{max-width:100%}
 
 /* ── Tipografia comum ────────────────────────────────────── */
 .eyebrow{
-  font-size:clamp(1.23rem,2.55vw,1.47rem); letter-spacing:.22em; text-transform:uppercase;
+  font-size:clamp(1.48rem,3.06vw,1.76rem); letter-spacing:.22em; text-transform:uppercase;
   font-weight:400; line-height:1.5;
   /* tom ligeiramente mais escuro que --terracota: a esta dimensão
      é o que garante contraste suficiente sobre o creme */
@@ -114,20 +121,29 @@ img{max-width:100%}
    de presença" é o título principal e "RSVP" fica como legenda
    mais pequena por baixo. */
 #rsvp .eyebrow{
-  font-size:clamp(1.95rem,4.4vw,2.55rem);
+  font-size:clamp(2.34rem,5.28vw,3.06rem);
   letter-spacing:.12em; line-height:1.3;
   margin:0 0 .3rem;
 }
+/* RSVP: estilo do Dresscode (#missa-festa .note), a dobrar de tamanho */
 #rsvp .huge{
-  font-size:clamp(.9rem,2vw,1.1rem);
-  letter-spacing:.34em; line-height:1.4;
+  font-size:2.1rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  line-height:1.4;
   color:var(--terracota-esc);
   margin:0 0 .2rem;
 }
 .lead{max-width:56ch; margin:0 auto 2rem; color:var(--tinta-suave)}
 .note{
-  font-size:.85rem; color:var(--tinta-suave);
+  font-size:1.02rem; color:var(--tinta-suave);
   max-width:52ch; margin:1.6rem auto 0;
+}
+/* Dresscode (Missa & Festa): tamanho e estilo a condizer com os
+   títulos dos cartões (ex.: "Como Chegar") */
+#missa-festa .note{
+  font-size:1.05rem; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--terracota-esc);
 }
 
 /* ── Navegação ───────────────────────────────────────────── */
@@ -229,11 +245,11 @@ img{max-width:100%}
   border-bottom:1px solid var(--linha);
 }
 .date{
-  font-size:clamp(1.5rem,3.6vw,1.8rem); font-weight:400;
+  font-size:clamp(1.8rem,4.32vw,2.16rem); font-weight:400;
   letter-spacing:.16em; text-transform:uppercase; margin:0 0 .35rem;
 }
 .place{
-  font-size:1.2rem; letter-spacing:.16em; text-transform:uppercase;
+  font-size:1.44rem; letter-spacing:.16em; text-transform:uppercase;
   color:var(--tinta-suave); margin:0 0 2.2rem;
 }
 .hero-cta{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center}
@@ -259,11 +275,11 @@ img{max-width:100%}
 }
 .cd-lbl{font-size:.9rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-suave); margin-top:.5rem}
 .cd-sep{font-size:clamp(1.5rem,6vw,2.6rem); font-weight:300; color:var(--terracota-claro); line-height:1.1}
-.cd-msg{font-size:1.95rem; letter-spacing:.1em; color:var(--terracota); margin:1rem 0 0}
+.cd-msg{font-size:2.34rem; letter-spacing:.1em; color:var(--terracota); margin:1rem 0 0}
 
 .save-date{margin:3.2rem auto 0; max-width:470px; padding:1.7rem 1.2rem}
 .save-date-title{
-  font-size:1.43rem; font-weight:400;
+  font-size:1.72rem; font-weight:400;
   letter-spacing:.18em; text-transform:uppercase;
   color:var(--terracota); margin:0 0 1.1rem;
 }
@@ -275,7 +291,7 @@ img{max-width:100%}
 }
 .mini-cal li{min-width:1.2em}
 .mini-cal .is-day{color:var(--terracota); font-weight:500; font-size:1.9em}
-.save-date-sub{font-size:1.05rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:0}
+.save-date-sub{font-size:1.26rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:0}
 
 /* ── Galeria: todas as fotos da pasta fotos/ ─────────────── */
 .galeria{
@@ -319,8 +335,8 @@ img{max-width:100%}
 .card p{margin:0 0 .6rem}
 .card p:last-child{margin-bottom:0}
 .card .btn-small{margin-top:.6rem}
-.card-time{font-size:1.08rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracota); margin-bottom:.7rem !important}
-.tag{font-size:.93rem; letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
+.card-time{font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracota); margin-bottom:.7rem !important}
+.tag{font-size:1.12rem; letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
 
 /* ── Prendas (Lista de Casamento) ────────────────────────── */
 /* Flexbox em vez de grid: com flex-wrap + justify-content:center,
@@ -358,21 +374,79 @@ img{max-width:100%}
   color:var(--terracota-esc); margin:0 0 .4rem;
 }
 .prenda-valor{
-  font-size:1.65rem; font-weight:400;
+  font-size:1.98rem; font-weight:400;
   color:var(--terracota); margin:0 0 .6rem;
 }
-.prenda-desc{font-size:.9rem; color:var(--tinta-suave); margin:0}
+.prenda-desc{font-size:1.08rem; color:var(--tinta-suave); margin:0}
 
-/* ── IBAN ────────────────────────────────────────────────── */
-.iban-box{margin:2.8rem auto 0; max-width:520px; padding:1.9rem 1.5rem; border-color:var(--linha-forte)}
-.iban-label{font-size:1.02rem; letter-spacing:.24em; text-transform:uppercase; color:var(--tinta-suave); margin:0 0 .5rem}
-.iban-holder{font-size:1.65rem; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--terracota-esc); margin:0 0 .5rem}
-.iban-value{
-  /* nunca quebra de linha: o tamanho acompanha a largura do ecrã
-     para o IBAN caber sempre inteiro numa linha só */
-  font-size:clamp(.9rem,4vw,1.55rem); font-weight:400;
-  letter-spacing:.02em; white-space:nowrap; margin:0 0 1.1rem; color:var(--tinta);
+/* ── IBAN + MB WAY (mesmo bloco) ──────────────────────────── */
+.iban-box{
+  margin:2.8rem auto 0; width:60vw; max-width:100%; padding:1.9rem 1.5rem;
+  border-color:var(--linha-forte);
+  /* torna a largura real da caixa disponível em unidades cqw, para
+     o texto do IBAN se dimensionar SEMPRE em relação a ela (e não
+     à janela) — ver .iban-value, mais abaixo. */
+  container-type:inline-size;
 }
+/* Título do bloco: acima das duas formas de pagamento (IBAN e MB WAY) */
+.pagamento-titulo{
+  font-size:1.43rem; font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--terracota); margin:0 0 1.2rem;
+}
+.iban-label{font-size:1.22rem; letter-spacing:.24em; text-transform:uppercase; color:var(--tinta-suave); margin:0 0 .5rem}
+/* Separador entre o IBAN e o MB WAY, dentro do mesmo bloco */
+.iban-label-mbway{margin-top:2rem; padding-top:1.7rem; border-top:1px dashed var(--linha)}
+.mbway-cols{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(2rem,8vw,4rem);
+  margin-top:.4rem;
+}
+.mbway-col{display:flex; flex-direction:column; align-items:center; gap:.5rem}
+.mbway-nome{
+  font-size:1.32rem; font-weight:400;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--terracota-esc); margin:0;
+}
+/* IBAN e números de MB WAY: mesmo tamanho e estilo. O tamanho
+   acompanha a largura REAL da caixa (não a da janela): ao mudar a
+   caixa de largura (ex.: 80vw → 60vw) o texto ajusta-se sempre, sem
+   nunca ultrapassar os limites da caixa.
+   clamp(...,vw,...) é o recurso para browsers sem suporte a
+   container queries; a segunda declaração (cqw) sobrepõe-se nos
+   restantes, já relativa à caixa em si. */
+.iban-value,
+.mbway-num{
+  font-size:clamp(.85rem,3vw,1.5rem);
+  font-size:clamp(.85rem,4.5cqw,1.5rem);
+  font-weight:400;
+  letter-spacing:.02em; margin:0 0 1.1rem; color:var(--tinta);
+  /* rede de segurança: se ainda assim não couber, quebra dentro da
+     caixa em vez de sair para fora dela */
+  white-space:normal; overflow-wrap:break-word; word-break:break-word;
+}
+.mbway-num{margin:0}
+
+/* ── Mensagem para os Noivos ──────────────────────────────── */
+.mensagem-box{margin:2.8rem auto 0; width:60vw; max-width:100%; padding:1.9rem 1.5rem; text-align:left; border-color:var(--linha-forte)}
+.mensagem-box .iban-label{text-align:center}
+.mensagem-form{display:flex; flex-direction:column; gap:1.1rem; margin-top:.4rem}
+.mensagem-campo{display:flex; flex-direction:column; gap:.4rem}
+.mensagem-campo span{
+  font-size:.85rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--tinta-suave);
+}
+.mensagem-campo input,
+.mensagem-campo textarea{
+  font-family:var(--f-texto); font-size:1rem; color:var(--tinta);
+  background:rgba(255,255,255,.55);
+  border:1px solid var(--linha-forte); border-radius:14px;
+  padding:.7rem .9rem; resize:vertical;
+}
+.mensagem-campo input:focus,
+.mensagem-campo textarea:focus{outline:2px solid var(--terracota-claro); outline-offset:1px}
+.mensagem-form .btn{align-self:center; margin-top:.2rem}
+.mensagem-status{text-align:center; font-size:1.08rem; color:var(--terracota-esc); margin:.8rem 0 0}
+.mensagem-status.is-erro{color:#B4302F}
 
 /* ── Listas (Onde Ficar) ─────────────────────────────────── */
 .stack{margin-top:2rem; text-align:left}
@@ -380,7 +454,7 @@ img{max-width:100%}
 .row:last-child{border-bottom:1px dashed var(--linha)}
 .row h3{font-size:1.05rem; font-weight:500; letter-spacing:.06em; color:var(--terracota-esc); margin:0 0 .25rem}
 .row p{margin:0}
-.row-meta{font-size:1.05rem; letter-spacing:.16em; text-transform:uppercase; color:#AE5029; margin-bottom:.5rem !important}
+.row-meta{font-size:1.26rem; letter-spacing:.16em; text-transform:uppercase; color:#AE5029; margin-bottom:.5rem !important}
 .row-link{
   flex:0 0 auto; font-size:1.08rem; letter-spacing:.14em; text-transform:uppercase;
   color:var(--terracota); text-decoration:none; white-space:nowrap;
@@ -392,12 +466,12 @@ img{max-width:100%}
 .footer{text-align:center; padding:clamp(3rem,8vw,4.5rem) 0; background:var(--creme-esc)}
 .footer-thanks{color:var(--tinta-suave); margin:0 0 1rem}
 .footer-names{
-  font-size:clamp(1.3rem,4.5vw,1.9rem); font-weight:300;
+  font-size:clamp(1.56rem,5.4vw,2.28rem); font-weight:300;
   letter-spacing:.18em; text-transform:uppercase;
   color:var(--terracota); margin:0;
 }
 .footer-names span{color:var(--terracota-medio)}
-.footer-date{font-size:1.08rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:.8rem 0 0}
+.footer-date{font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:.8rem 0 0}
 
 a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline-offset:3px}
 
@@ -478,6 +552,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline
    escondidos a pedido (títulos, imagens, .row-meta e links de mapa
    mantêm-se visíveis). O texto continua no HTML, só não é apresentado. */
 #ficar p:not(.row-meta),
-#visitar p:not(.row-meta){
+#visitar p:not(.row-meta):not(.lead){
   display:none;
 }

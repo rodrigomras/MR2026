@@ -62,41 +62,46 @@
     });
   }
 
-  /* ── 3. Copiar IBAN ──────────────────────────────────────── */
-  var botaoIban = document.getElementById('ibanCopy');
-
-  if (botaoIban) {
-    botaoIban.addEventListener('click', function () {
-      var iban = botaoIban.dataset.iban;
-
-      function feedback(ok) {
-        botaoIban.textContent = ok ? 'IBAN copiado ✓' : 'Copie manualmente';
-        botaoIban.classList.add('is-copied');
-        setTimeout(function () {
-          botaoIban.textContent = 'Copiar IBAN';
-          botaoIban.classList.remove('is-copied');
-        }, 2500);
-      }
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(iban).then(function () { feedback(true); },
-                                                 function () { feedback(false); });
-      } else {
-        // fallback para browsers antigos
-        var tmp = document.createElement('textarea');
-        tmp.value = iban;
-        tmp.setAttribute('readonly', '');
-        tmp.style.position = 'absolute';
-        tmp.style.left = '-9999px';
-        document.body.appendChild(tmp);
-        tmp.select();
-        var ok = false;
-        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
-        document.body.removeChild(tmp);
-        feedback(ok);
-      }
-    });
+  /* ── 3. Copiar (IBAN e MB WAY) ─────────────────────────────
+     Qualquer botão com [data-copiar="valor"] copia esse valor
+     para a área de transferência e mostra feedback temporário,
+     mantendo o texto original do botão (ex.: "Copiar IBAN",
+     "Copiar").                                                    */
+  function copiarTexto(texto) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(texto).then(
+        function () { return true; },
+        function () { return false; }
+      );
+    }
+    // fallback para browsers antigos
+    var tmp = document.createElement('textarea');
+    tmp.value = texto;
+    tmp.setAttribute('readonly', '');
+    tmp.style.position = 'absolute';
+    tmp.style.left = '-9999px';
+    document.body.appendChild(tmp);
+    tmp.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(tmp);
+    return Promise.resolve(ok);
   }
+
+  document.querySelectorAll('[data-copiar]').forEach(function (botao) {
+    var rotuloNormal = botao.textContent;
+
+    botao.addEventListener('click', function () {
+      copiarTexto(botao.dataset.copiar).then(function (ok) {
+        botao.textContent = ok ? 'Copiado ✓' : 'Copie manualmente';
+        botao.classList.add('is-copied');
+        setTimeout(function () {
+          botao.textContent = rotuloNormal;
+          botao.classList.remove('is-copied');
+        }, 2500);
+      });
+    });
+  });
 
   /* ── 4. Imagens opcionais ─────────────────────────────────
      Qualquer <img data-opcional> desaparece silenciosamente se
@@ -381,5 +386,78 @@
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
     alvos.forEach(function (n) { obs.observe(n); });
+  }
+
+  /* ── 10. Mensagem para os noivos → Google Docs ─────────────
+     O formulário envia "Nome", "Valor Oferecido" (opcional) e
+     "Mensagem" para um Google Apps Script (Web App) que os
+     acrescenta a um Google Doc. Para ativar o envio:
+       1. Abram (ou criem) o Google Doc onde querem guardar as
+          mensagens e copiem o ID do URL (o trecho entre "/d/" e
+          "/edit").
+       2. Em script.google.com, criem um novo projeto e colem o
+          código do ficheiro apps-script-mensagens.gs (incluído
+          junto a este site), preenchendo esse ID.
+       3. Implementar → Nova implementação → tipo "Aplicação Web",
+          a executar como "Eu" e com acesso "Qualquer pessoa".
+       4. Colem o URL da aplicação Web gerado na constante
+          MENSAGEM_SCRIPT_URL, aqui em baixo.
+     Enquanto a constante ficar vazia, o formulário avisa que o
+     envio ainda não está configurado, em vez de falhar em
+     silêncio.                                                     */
+  var MENSAGEM_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzuwr6XosbeIK8ebAZdY-TiU-4L8W3H12rZ-j1ucmSHQUy4NT0-gYQrztelPoaZi_JRaA/exec'; // <-- colar aqui o URL da Google Apps Script Web App
+
+  var formMensagem = document.getElementById('mensagemForm');
+  var statusMensagem = document.getElementById('mensagemStatus');
+
+  function mostrarEstadoMensagem(texto, erro) {
+    if (!statusMensagem) return;
+    statusMensagem.textContent = texto;
+    statusMensagem.hidden = false;
+    statusMensagem.classList.toggle('is-erro', !!erro);
+  }
+
+  if (formMensagem) {
+    formMensagem.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!MENSAGEM_SCRIPT_URL) {
+        mostrarEstadoMensagem('O envio ainda não está configurado. Contactem os noivos diretamente.', true);
+        return;
+      }
+
+      var nome = document.getElementById('mensagemNome').value.trim();
+      var valor = document.getElementById('mensagemValor').value.trim();
+      var mensagem = document.getElementById('mensagemTexto').value.trim();
+
+      if (!nome || !mensagem) {
+        mostrarEstadoMensagem('Preencham o nome e a mensagem antes de submeter.', true);
+        return;
+      }
+
+      var botao = formMensagem.querySelector('button[type="submit"]');
+      botao.disabled = true;
+      mostrarEstadoMensagem('A enviar…', false);
+
+      var dados = new URLSearchParams();
+      dados.append('nome', nome);
+      dados.append('valor', valor);
+      dados.append('mensagem', mensagem);
+
+      fetch(MENSAGEM_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: dados
+      }).then(function () {
+        // Em modo "no-cors" não é possível ler a resposta; se o
+        // fetch não rejeitar, assume-se que o envio foi feito.
+        mostrarEstadoMensagem('Mensagem enviada. Muito obrigado! ♥', false);
+        formMensagem.reset();
+      }).catch(function () {
+        mostrarEstadoMensagem('Não foi possível enviar. Tentem novamente mais tarde.', true);
+      }).finally(function () {
+        botao.disabled = false;
+      });
+    });
   }
 })();
