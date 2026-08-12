@@ -50,9 +50,10 @@ body{
 
 img{max-width:100%}
 
-/* Todos os parágrafos: +20% em relação ao tamanho herdado.
-   Classes com tamanho próprio (mais abaixo) já vêm recalculadas
-   e sobrepõem-se a esta regra de base. */
+/* Tamanho único para todos os parágrafos do site (normalizado).
+   Exceção: .iban-value/.mbway-num mantêm um tamanho próprio,
+   porque têm de se ajustar à largura da caixa para nunca
+   ultrapassar os seus limites (ver mais abaixo). */
 p{font-size:1.2em}
 
 .wrap{
@@ -121,7 +122,7 @@ p{font-size:1.2em}
    de presença" é o título principal e "RSVP" fica como legenda
    mais pequena por baixo. */
 #rsvp .eyebrow{
-  font-size:clamp(2.34rem,5.28vw,3.06rem);
+  font-size:clamp(1.6rem,4.2vw,2.3rem);
   letter-spacing:.12em; line-height:1.3;
   margin:0 0 .3rem;
 }
@@ -135,13 +136,14 @@ p{font-size:1.2em}
 }
 .lead{max-width:56ch; margin:0 auto 2rem; color:var(--tinta-suave)}
 .note{
-  font-size:1.02rem; color:var(--tinta-suave);
+  color:var(--tinta-suave);
   max-width:52ch; margin:1.6rem auto 0;
 }
-/* Dresscode (Missa & Festa): tamanho e estilo a condizer com os
-   títulos dos cartões (ex.: "Como Chegar") */
+/* Dresscode (Missa & Festa): estilo a condizer com os títulos dos
+   cartões (ex.: "Como Chegar") — tamanho normalizado com os
+   restantes parágrafos */
 #missa-festa .note{
-  font-size:1.05rem; font-weight:500;
+  font-weight:500;
   letter-spacing:.1em; text-transform:uppercase;
   color:var(--terracota-esc);
 }
@@ -245,11 +247,11 @@ p{font-size:1.2em}
   border-bottom:1px solid var(--linha);
 }
 .date{
-  font-size:clamp(1.8rem,4.32vw,2.16rem); font-weight:400;
+  font-weight:400;
   letter-spacing:.16em; text-transform:uppercase; margin:0 0 .35rem;
 }
 .place{
-  font-size:1.44rem; letter-spacing:.16em; text-transform:uppercase;
+  letter-spacing:.16em; text-transform:uppercase;
   color:var(--tinta-suave); margin:0 0 2.2rem;
 }
 .hero-cta{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center}
@@ -270,16 +272,18 @@ p{font-size:1.2em}
 .cd-cell{min-width:clamp(52px,15vw,84px); display:flex; flex-direction:column; align-items:center}
 .cd-num{
   font-weight:300;
-  font-size:clamp(2rem,9vw,3.4rem); line-height:1;
+  font-size:clamp(1.5rem,6.5vw,2.5rem); line-height:1;
   color:var(--terracota); font-variant-numeric:tabular-nums;
 }
 .cd-lbl{font-size:.9rem; letter-spacing:.22em; text-transform:uppercase; color:var(--tinta-suave); margin-top:.5rem}
 .cd-sep{font-size:clamp(1.5rem,6vw,2.6rem); font-weight:300; color:var(--terracota-claro); line-height:1.1}
-.cd-msg{font-size:2.34rem; letter-spacing:.1em; color:var(--terracota); margin:1rem 0 0}
+.cd-msg{letter-spacing:.1em; color:var(--terracota); margin:1rem 0 0}
 
-.save-date{margin:3.2rem auto 0; max-width:470px; padding:1.7rem 1.2rem}
+/* Escondido a pedido: bloco com a data (mini-calendário) na
+   Contagem Decrescente. O HTML mantém-se, só não é apresentado. */
+.save-date{margin:3.2rem auto 0; max-width:470px; padding:1.7rem 1.2rem; display:none}
 .save-date-title{
-  font-size:1.72rem; font-weight:400;
+  font-weight:400;
   letter-spacing:.18em; text-transform:uppercase;
   color:var(--terracota); margin:0 0 1.1rem;
 }
@@ -291,7 +295,7 @@ p{font-size:1.2em}
 }
 .mini-cal li{min-width:1.2em}
 .mini-cal .is-day{color:var(--terracota); font-weight:500; font-size:1.9em}
-.save-date-sub{font-size:1.26rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:0}
+.save-date-sub{letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:0}
 
 /* ── Galeria: todas as fotos da pasta fotos/ ─────────────── */
 .galeria{
@@ -335,8 +339,8 @@ p{font-size:1.2em}
 .card p{margin:0 0 .6rem}
 .card p:last-child{margin-bottom:0}
 .card .btn-small{margin-top:.6rem}
-.card-time{font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracota); margin-bottom:.7rem !important}
-.tag{font-size:1.12rem; letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
+.card-time{letter-spacing:.2em; text-transform:uppercase; color:var(--terracota); margin-bottom:.7rem !important}
+.tag{letter-spacing:.24em; text-transform:uppercase; color:#AE5029; margin:0 0 .3rem !important}
 
 /* ── Prendas (Lista de Casamento) ────────────────────────── */
 /* Flexbox em vez de grid: com flex-wrap + justify-content:center,
@@ -374,7 +378,7 @@ p{font-size:1.2em}
   color:var(--terracota-esc); margin:0 0 .4rem;
 }
 .prenda-valor{
-  font-size:1.28rem; font-weight:400;
+  font-weight:400;
   color:var(--terracota); margin:0 0 .6rem;
 }
 .prenda-desc{font-size:1.08rem; color:var(--tinta-suave); margin:0}
@@ -390,11 +394,17 @@ p{font-size:1.2em}
 }
 /* Título do bloco: acima das duas formas de pagamento (IBAN e MB WAY) */
 .pagamento-titulo{
-  font-size:1.43rem; font-weight:400;
+  font-weight:400;
   letter-spacing:.16em; text-transform:uppercase;
   color:var(--terracota); margin:0 0 1.2rem;
+  /* garante que nunca ultrapassa a largura da caixa */
+  overflow-wrap:break-word; word-break:break-word;
 }
-.iban-label{font-size:1.22rem; letter-spacing:.24em; text-transform:uppercase; color:var(--tinta-suave); margin:0 0 .5rem}
+.iban-label{
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--tinta-suave); margin:0 0 .5rem;
+  overflow-wrap:break-word; word-break:break-word;
+}
 /* Separador entre o IBAN e o MB WAY, dentro do mesmo bloco */
 .iban-label-mbway{margin-top:2rem; padding-top:1.7rem; border-top:1px dashed var(--linha)}
 .mbway-cols{
@@ -403,7 +413,7 @@ p{font-size:1.2em}
 }
 .mbway-col{display:flex; flex-direction:column; align-items:center; gap:.5rem}
 .mbway-nome{
-  font-size:1.32rem; font-weight:400;
+  font-weight:400;
   letter-spacing:.14em; text-transform:uppercase;
   color:var(--terracota-esc); margin:0;
 }
@@ -445,7 +455,7 @@ p{font-size:1.2em}
 .mensagem-campo input:focus,
 .mensagem-campo textarea:focus{outline:2px solid var(--terracota-claro); outline-offset:1px}
 .mensagem-form .btn{align-self:center; margin-top:.2rem}
-.mensagem-status{text-align:center; font-size:1.08rem; color:var(--terracota-esc); margin:.8rem 0 0}
+.mensagem-status{text-align:center; color:var(--terracota-esc); margin:.8rem 0 0}
 .mensagem-status.is-erro{color:#B4302F}
 
 /* ── Listas (Onde Ficar) ─────────────────────────────────── */
@@ -454,7 +464,7 @@ p{font-size:1.2em}
 .row:last-child{border-bottom:1px dashed var(--linha)}
 .row h3{font-size:1.05rem; font-weight:500; letter-spacing:.06em; color:var(--terracota-esc); margin:0 0 .25rem}
 .row p{margin:0}
-.row-meta{font-size:1.26rem; letter-spacing:.16em; text-transform:uppercase; color:#AE5029; margin-bottom:.5rem !important}
+.row-meta{letter-spacing:.16em; text-transform:uppercase; color:#AE5029; margin-bottom:.5rem !important}
 .row-link{
   flex:0 0 auto; font-size:1.08rem; letter-spacing:.14em; text-transform:uppercase;
   color:var(--terracota); text-decoration:none; white-space:nowrap;
@@ -471,7 +481,7 @@ p{font-size:1.2em}
   color:var(--terracota); margin:0;
 }
 .footer-names span{color:var(--terracota-medio)}
-.footer-date{font-size:1.3rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:.8rem 0 0}
+.footer-date{letter-spacing:.2em; text-transform:uppercase; color:var(--tinta-suave); margin:.8rem 0 0}
 
 a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline-offset:3px}
 
@@ -517,6 +527,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline
 }
 
 @media (max-width:600px){
+  /* Telemóvel (ex.: iPhone): o texto fica desproporcionado em
+     relação ao ecrã. Como quase todos os tamanhos do site são em
+     rem, reduzir a base a 85% encolhe tudo ~15% de uma só vez,
+     mantendo as proporções entre títulos, texto e legendas. */
+  html{font-size:85%}
+  /* Dados para Transferência / Mensagem aos Noivos: mais largura
+     no telemóvel (60vw fica apertado demais para o conteúdo). */
+  .iban-box,.mensagem-box{width:80vw}
+
   .cards{grid-template-columns:1fr}
   /* .prendas já não é grid — o script.js define --prendas-colunas:1
      automaticamente quando a largura só dá para uma coluna. */
