@@ -369,12 +369,12 @@ p{font-size:1.2em}
   margin-bottom:1rem;
 }
 .prenda h3{
-  font-size:1rem; font-weight:500;
+  font-size:1.5rem; font-weight:500;
   letter-spacing:.1em; text-transform:uppercase;
   color:var(--terracota-esc); margin:0 0 .4rem;
 }
 .prenda-valor{
-  font-size:1.98rem; font-weight:400;
+  font-size:1.28rem; font-weight:400;
   color:var(--terracota); margin:0 0 .6rem;
 }
 .prenda-desc{font-size:1.08rem; color:var(--tinta-suave); margin:0}

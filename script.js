@@ -62,6 +62,30 @@
     });
   }
 
+  /* ── 2b. Compensar a barra de navegação fixa ao saltar para
+     uma secção ─────────────────────────────────────────────
+     A barra (.nav) é "sticky" no topo; sem isto, ao clicar num
+     link (ou botão) que aponta para uma âncora (#secção), o
+     topo da secção ficava tapado por trás da barra. O
+     scroll-padding-top do <html> compensa exatamente a altura
+     real da barra — que muda consoante o ecrã e a fonte — para
+     a secção aparecer sempre alinhada logo abaixo dela.        */
+  var barraNav = document.getElementById('nav');
+
+  function ajustarScrollPadding() {
+    if (!barraNav) return;
+    document.documentElement.style.scrollPaddingTop = barraNav.offsetHeight + 'px';
+  }
+
+  if (barraNav) {
+    ajustarScrollPadding();
+    window.addEventListener('resize', ajustarScrollPadding);
+    // a barra pode mudar de altura quando a fonte web carrega
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(ajustarScrollPadding);
+    }
+  }
+
   /* ── 3. Copiar (IBAN e MB WAY) ─────────────────────────────
      Qualquer botão com [data-copiar="valor"] copia esse valor
      para a área de transferência e mostra feedback temporário,
