@@ -526,6 +526,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--terracota); outline
   #missa-festa .cards{grid-template-columns:repeat(3,1fr)}
 }
 
+/* Computador/tablet: os títulos (tamanho original, pensado para o
+   telemóvel) ficam grandes demais em ecrãs maiores. Reduz-se só
+   aqui — o telemóvel (regra seguinte) continua a partir dos
+   mesmos valores base, sem ser afetado por este bloco. Os
+   parágrafos não são tocados. */
+@media (min-width:601px){
+  .eyebrow{font-size:clamp(1.22rem,2.3vw,1.42rem)}
+  .titulo{font-size:clamp(1.32rem,2.6vw,1.72rem)}
+  #rsvp .eyebrow{font-size:clamp(1.32rem,2.6vw,1.72rem)}
+  #rsvp .huge{font-size:1.55rem}
+  .names{font-size:clamp(1.7rem,4.6vw,2.4rem)}
+  .footer-names{font-size:clamp(1.3rem,3.6vw,1.7rem)}
+}
+
 @media (max-width:600px){
   /* Telemóvel (ex.: iPhone): o texto fica desproporcionado em
      relação ao ecrã. Como quase todos os tamanhos do site são em
