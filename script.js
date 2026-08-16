@@ -392,6 +392,39 @@
     window.addEventListener('resize', agendarAjustePrendas);
   }
 
+  /* ── 8b. Prendas: barra de progresso (% já oferecida) ──────
+     Cada .prenda-progresso tem [data-oferecido="valor_em_euros"],
+     a editar manualmente sempre que chega uma contribuição para
+     essa prenda. A meta (100%) é lida do preço já apresentado em
+     .prenda-valor (ex.: "380€" → 380). Prendas sem preço numérico
+     (ex.: Lua de Mel) ficam sem barra.                             */
+  document.querySelectorAll('.prenda-progresso').forEach(function (barra) {
+    var artigo = barra.closest('.prenda');
+    var elValor = artigo ? artigo.querySelector('.prenda-valor') : null;
+    var meta = elValor
+      ? parseFloat((elValor.textContent || '').replace(/[^\d,.-]/g, '').replace(',', '.'))
+      : NaN;
+    var oferecido = parseFloat(barra.dataset.oferecido || '0');
+
+    if (!meta || meta <= 0 || isNaN(oferecido)) {
+      barra.hidden = true;
+      return;
+    }
+
+    var percentagem = Math.max(0, Math.min(100, Math.round((oferecido / meta) * 100)));
+    var preenchimento = barra.querySelector('.prenda-progresso-fill');
+    var texto = barra.querySelector('.prenda-progresso-texto');
+
+    if (preenchimento) preenchimento.style.width = percentagem + '%';
+    if (texto) texto.textContent = percentagem + '% oferecido';
+
+    barra.setAttribute('role', 'progressbar');
+    barra.setAttribute('aria-valuemin', '0');
+    barra.setAttribute('aria-valuemax', '100');
+    barra.setAttribute('aria-valuenow', String(percentagem));
+    barra.setAttribute('aria-label', 'Percentagem já oferecida');
+  });
+
   /* ── 9. Animação suave de entrada das secções ────────────── */
   var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

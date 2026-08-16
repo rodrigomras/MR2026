@@ -383,6 +383,32 @@ p{font-size:1.2em}
 }
 .prenda-desc{font-size:1.08rem; color:var(--tinta-suave); margin:0}
 
+/* Barra de progresso: % já oferecida de cada prenda. O JS
+   (script.js) lê o preço em .prenda-valor e o valor já oferecido
+   em [data-oferecido], calcula a percentagem e define a largura
+   do preenchimento — ver secção correspondente no script.js.
+   Prendas sem preço numérico (ex.: Lua de Mel) ficam sem barra. */
+/* margin-top:auto empurra a barra para o fundo do cartão: como as
+   prendas da mesma linha (.prendas é flex, align-items:stretch por
+   omissão) ficam todas com a mesma altura, as barras alinham-se
+   sempre ao mesmo nível, seja qual for o tamanho da descrição. */
+.prenda-progresso{width:80%; margin-top:auto; padding-top:.8rem}
+.prenda-progresso-track{
+  width:100%; height:.5rem; border-radius:999px;
+  background:var(--linha-forte); overflow:hidden;
+}
+.prenda-progresso-fill{
+  width:0%; height:100%; border-radius:inherit;
+  background:var(--terracota);
+  transition:width .5s ease;
+}
+.prenda-progresso-texto{
+  /* sem font-size próprio: segue o tamanho normalizado dos
+     restantes parágrafos do site */
+  letter-spacing:.04em; color:var(--tinta-suave);
+  margin:.4rem 0 0;
+}
+
 /* ── IBAN + MB WAY (mesmo bloco) ──────────────────────────── */
 .iban-box{
   margin:2.8rem auto 0; width:60vw; max-width:100%; padding:1.9rem 1.5rem;
